@@ -5,7 +5,6 @@ import guru.springframework.converters.RecipeCommandToRecipe;
 import guru.springframework.converters.RecipeToRecipeCommand;
 import guru.springframework.domain.Recipe;
 import guru.springframework.repositories.RecipeRepository;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Créé par dab4926 le 2021-07-02.
  */
-@Ignore
+//@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class RecipeServiceIT {
