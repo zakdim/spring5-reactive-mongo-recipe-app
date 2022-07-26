@@ -18,14 +18,12 @@ import java.util.UUID;
 @ToString
 public class Ingredient {
 
-//    @Id
     private String id = UUID.randomUUID().toString();
     private String description;
     private BigDecimal amount;
 
     @DBRef
     private UnitOfMeasure uom;
-//    private Recipe recipe;
 
     public Ingredient() {
     }
