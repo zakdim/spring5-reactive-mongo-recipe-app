@@ -1,5 +1,4 @@
-[comment]: <> ([![CircleCI]&#40;https://circleci.com/gh/zakdim/spring5-mongo-recipe-app/tree/master.svg?style=svg&#41;]&#40;https://circleci.com/gh/zakdim/spring5-mongo-recipe-app/tree/master&#41;)
-
+[//]: # ([![CircleCI]&#40;https://dl.circleci.com/status-badge/img/gh/zakdim/spring5-reactive-mongo-recipe-app/tree/master.svg?style=svg&#41;]&#40;https://dl.circleci.com/status-badge/redirect/gh/zakdim/spring5-reactive-mongo-recipe-app/tree/master&#41;)
 [comment]: <> ([![codecov]&#40;https://codecov.io/gh/zakdim/spring5-mysql-recipe-app/branch/master/graph/badge.svg?token=SF6BA3YVF7&#41;]&#40;https://codecov.io/gh/zakdim/spring5-mysql-recipe-app&#41;)
 
 # Section 7: Web Development with Spring MVC
