@@ -10,8 +10,10 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
+import reactor.core.publisher.Flux;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,6 +47,8 @@ public class IndexControllerTest {
     public void testMockMVC() throws Exception {
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
 
+        when(recipeService.getRecipes()).thenReturn(Flux.empty());
+
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"));
@@ -55,12 +59,16 @@ public class IndexControllerTest {
 
         // given
         Set<Recipe> recipes = new HashSet<>();
-        recipes.add(new Recipe("Pasta"));
-        recipes.add(new Recipe("Burger"));
+        recipes.add(new Recipe());
 
-        when(recipeService.getRecipes()).thenReturn(recipes);
+        Recipe recipe = new Recipe();
+        recipe.setId("1");
 
-        ArgumentCaptor<Set<Recipe>> argumentCaptor = ArgumentCaptor.forClass(Set.class);
+        recipes.add(recipe);
+
+        when(recipeService.getRecipes()).thenReturn(Flux.fromIterable(recipes));
+
+        ArgumentCaptor<List<Recipe>> argumentCaptor = ArgumentCaptor.forClass(List.class);
 
         // when
         String viewName = controller.getIndexPage(model);
@@ -69,10 +77,7 @@ public class IndexControllerTest {
         assertEquals("index", viewName);
         verify(recipeService, times(1)).getRecipes();
         verify(model, times(1)).addAttribute(eq("recipes"), argumentCaptor.capture());
-        Set<Recipe> setInController = argumentCaptor.getValue();
-        assertEquals(2, setInController.size());
-        assertThat(setInController)
-                .extracting("description")
-                .contains("Pasta", "Burger");
+        List<Recipe> setInController = argumentCaptor.getValue();
+        assertThat(setInController.size()).isEqualTo(2);
     }
 }
